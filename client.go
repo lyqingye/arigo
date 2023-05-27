@@ -64,6 +64,22 @@ func NewClient(rpcClient *rpc2.Client, authToken string) *Client {
 	return client
 }
 
+func NewClient2(ctx context.Context, url string, authToken string) (client *Client, err error) {
+	dialer := websocket.Dialer{}
+
+	ws, _, err := dialer.DialContext(ctx, url, http.Header{})
+	if err != nil {
+		return
+	}
+
+	rwc := wsrpc.NewReadWriteCloser(ws)
+	codec := jsonrpc.NewJSONCodec(&rwc)
+	rpcClient := rpc2.NewClientWithCodec(codec)
+
+	client = NewClient(rpcClient, authToken)
+	return
+}
+
 // DialContext creates a new connection to an aria2 rpc interface.
 // It returns a new client.
 func DialContext(ctx context.Context, url string, authToken string) (client *Client, err error) {
