@@ -86,7 +86,7 @@ type Options struct {
 	MetalinkPreferredProtocol     string  `json:"metalink-preferred-protocol,omitempty"`
 	MetalinkVersion               string  `json:"metalink-version,omitempty"`
 	MinSplitSize                  uint    `json:"min-split-size,omitempty,string"`
-	NoFileAllocationLimit         bool    `json:"no-file-allocation-limit,omitempty,string"`
+	NoFileAllocationLimit         uint    `json:"no-file-allocation-limit,omitempty,string"`
 	NoNetrc                       bool    `json:"no-netrc,omitempty,string"`
 	NoProxy                       bool    `json:"no-proxy,omitempty,string"`
 	Out                           string  `json:"out,omitempty"`
